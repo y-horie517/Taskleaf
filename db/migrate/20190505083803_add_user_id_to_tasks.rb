@@ -1,5 +1,4 @@
-class AddUserToTasks < ActiveRecord::Migration[5.2]
-  def change
+class AddUserIdToTasks < ActiveRecord::Migration[5.2]
     def up
       # 一度レコードを全削除
       execute 'DELETE FROM tasks;'
@@ -9,5 +8,4 @@ class AddUserToTasks < ActiveRecord::Migration[5.2]
     def down
       remove_reference :tasks, :user, index: true
     end
-  end
 end

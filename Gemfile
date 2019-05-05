@@ -66,3 +66,5 @@ gem 'slim-rails'
 # ERBをslimに変換してくれるコマンドerb2slimコマンドを提供
 gem 'html2slim'
 gem 'bootstrap'
+
+gem 'rails_autolink'

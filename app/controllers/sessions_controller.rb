@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
     #一致したら、userオブジェクト自身を返す。一致しなければ、falseを返す。
     # メールアドレスが見つからない場合、user変数がnilになるため、ぼっち演算子使用
     if user&.authenticate(session_params[:password])
-      session[:user_id] = user.user_id
+      session[:user_id] = user.id
       redirect_to root_path, notice: 'ログインしました。'
     else
-      render: new
+      render  :new
     end
   end
 
