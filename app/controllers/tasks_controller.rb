@@ -28,15 +28,15 @@ class TasksController < ApplicationController
   end
 
   def update
-    # task = current_user.tasks.find(params[:id])
-    task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を更新しました。"
+    # @task = current_user.tasks.find(params[:id])
+    @task.update!(task_params)
+    redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
   end
 
   def destroy
-    # task = current_user.tasks.find(params[:id])
-    task.destroy
-    redirect_to tasks_url, notice: "タスクを「#{task.name}」削除しました。"
+    # @task = current_user.tasks.find(params[:id])
+    @task.destroy
+    redirect_to tasks_url, notice: "タスクを「#{@task.name}」削除しました。"
   end
 
 
