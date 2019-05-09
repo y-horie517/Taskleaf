@@ -28,6 +28,19 @@ class Task < ApplicationRecord
         end
     end
 
+    # fileという引数でアップされたファイルの内容にアクセスするためのオブジェクトを受け取ります
+    def self.import(file)
+        # 一行目はヘッダとして無視する
+        CSV.foreach(file.path, headers: true) do |row|
+            # newはTask.newと同じ
+            task = new
+            # to_hashメソッドでデータをハッシュ形式に変換
+            # *の部分はcsv_attributesメソッドの戻り値の配列の中身をそれぞれ引数にしている
+            task.attributes = row.to_hash.slice(*csv_attributes)
+            task.save!
+        end
+    end
+
     private
     def validate_name_not_including_commma
         errors.add(:name, 'にカンマを含めることはできません') if name&.include?(',')
