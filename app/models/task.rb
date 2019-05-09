@@ -11,6 +11,23 @@ class Task < ApplicationRecord
 
     scope :recent, -> {order(created_at: :desc)}
 
+    def self.csv_attributes
+        # csvデータにどの属性をどの順番で出力するかをcsv_attributesというクラスメソッドから得られるように定義
+        ["name", "description", "created_at", "updated_at"]
+    end
+
+    def self.generate_csv
+        # CSVデータの文字列を生成。このメソッドの戻り値になる
+        CSV.generate(headers: true) do |csv|
+            # 一行目としてヘッダを出力（属性名）
+            csv << csv_attributes
+            # 全タスクを取得し、1レコードごとにCSV出力
+            all.each do |task|
+                csv << csv_attributes.map{|attr| task.send(attr)}
+            end
+        end
+    end
+
     private
     def validate_name_not_including_commma
         errors.add(:name, 'にカンマを含めることはできません') if name&.include?(',')

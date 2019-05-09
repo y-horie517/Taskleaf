@@ -1,5 +1,7 @@
 require_relative 'boot'
 
+# rubyのcsvライブラリを利用
+require 'csv'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

@@ -6,6 +6,11 @@ class TasksController < ApplicationController
     @tasks = @q.result(distinct: true)
     # @tasks = current_user.tasks.order(created_at: :desc)
     # @tasks = @q.result(distinct: true).recent
+
+    respond_to do |format|
+      format.html
+      format.csv{ send_data @tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv" }
+    end
   end
 
   def create
