@@ -63,7 +63,11 @@ class TasksController < ApplicationController
   def destroy
     # @task = current_user.tasks.find(params[:id])
     @task.destroy
-    redirect_to tasks_url, notice: "タスクを「#{@task.name}」削除しました。"
+    # redirect_to tasks_url, notice: "タスクを「#{@task.name}」削除しました。"
+    
+    # レスポンスボディなしでHTTPステータスとして204が返る（成功と判定される）
+    # Ajaxリクエストの場合は記述なしでも動作は同じ
+    # head :no_content
   end
 
 
