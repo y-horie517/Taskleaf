@@ -69,7 +69,7 @@ gem 'html2slim'
 gem 'bootstrap'
 
 gem 'rails_autolink'
-
+# テスト
 gem 'rspec-rails', '~> 3.7'
-
+# 検索
 gem 'ransack'

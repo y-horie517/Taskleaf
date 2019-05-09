@@ -18,6 +18,8 @@ class TasksController < ApplicationController
 
     if @task.save
       logger.debug "task: #{@task.attributes.inspect}"
+      # メール即時送信
+      TaskMailer.creation_email(@task).deliver_now
       redirect_to @task, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
