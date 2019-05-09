@@ -71,3 +71,5 @@ gem 'bootstrap'
 gem 'rails_autolink'
 
 gem 'rspec-rails', '~> 3.7'
+
+gem 'ransack'
